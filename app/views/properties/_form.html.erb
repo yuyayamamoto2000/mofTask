@@ -1,0 +1,54 @@
+<%= form_with(model: property, local: true) do |propertys_form| %>
+  <% if property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+      <ul>
+      <% property.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= propertys_form.label :name %>
+    <%= propertys_form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= propertys_form.label :rent %>
+    <%= propertys_form.number_field :rent %>円
+  </div>
+
+  <div class="field">
+    <%= propertys_form.label :address %>
+    <%= propertys_form.text_area :address %>
+  </div>
+
+  <div class="field">
+    <%= propertys_form.label :age %>
+    <%= propertys_form.number_field :age %>年
+  </div>
+
+  <div class="field">
+    <%= propertys_form.label :note %>
+    <%= propertys_form.text_area :note %>
+  </div>
+  <% @tag_number = 1 %>
+  <%= propertys_form.fields_for :closest_stations do |closest_stations_form|  %>
+  <h2>最寄駅<%= @tag_number %></h2>
+  <% @tag_number += 1 %>
+    <%= closest_stations_form.label :line_name %>
+    <%= closest_stations_form.text_field :line_name %>
+
+    <%= closest_stations_form.label :station_name %>
+    <%= closest_stations_form.text_field :station_name %>
+
+    <%= closest_stations_form.label :walking %>
+    <%= closest_stations_form.number_field :walking %>分
+  <% end %>
+  <div class="actions">
+    <%= propertys_form.submit %>
+  </div>
+<% end %>
