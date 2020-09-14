@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      property: 物件
+    attributes:
+      property:
+        title: タイトル
+        name: 物件名
+        rent: 家賃
+        address: 住所
+        age: 築年数
+        note: 備考
